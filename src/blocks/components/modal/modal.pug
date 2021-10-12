@@ -1,0 +1,25 @@
+#modal.modal
+	.modal__wrapp
+		.modal__window
+			.modal__top
+				button.btn.btn--icon.modal__icon-close-wrapper.modal__close(aria-label="Закрыть модальное окно" type="button")
+					+icon-mono('close')(class="modal__icon-close")
+			.modal__header
+				span.modal__title Заказать звонок
+				p.modal__subtitle Оставьте свои контактные данные, с вами свяжутся в течении 40 минут
+			.modal__content
+				.form-modal.modal__form-modal
+					form#form.form(novalidate)
+						input(type="hidden" name="test")
+						.form__line
+							label.form__label(for='modal-name')
+							input.form__input#modal-name(type='text', placeholder='Имя' name="Имя")
+						.form__line
+							label.form__label(for='modal-phone')
+							input.form__input#modal-phone.imask(type='tel' placeholder="Номер телефона" name="Телефон" data-required)
+						.form__line-btn
+							button.btn.btn--primary.btn--midle.form-modal__btn(type='submit') Отправить
+			.modal__success-content.success-content
+				h2 Мы с вами свяжемся!
+			.modal__error-content.error-content
+				h2 Произошла ошибка

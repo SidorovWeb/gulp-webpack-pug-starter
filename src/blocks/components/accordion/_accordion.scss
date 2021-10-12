@@ -1,0 +1,64 @@
+.accordion {
+  max-width: 40rem;
+
+  &__item {
+    background-color: transparent;
+  }
+
+  &__title {
+    padding: 2rem;
+    width: 100%;
+    background-color: $bar;
+    cursor: pointer;
+    position: relative;
+
+    & .accordion__icon {
+      stroke: #32353d;
+      position: absolute;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      transition: $transition;
+    }
+
+    &.open {
+      & .accordion__icon {
+        transform: translateY(-50%) rotate(-90deg);
+      }
+
+      & ~ div,
+      & ~ ul,
+      & ~ span,
+      & ~ a {
+        height: auto;
+        transition-property: height;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 225ms;
+        overflow: hidden;
+      }
+    }
+  }
+
+  &__content {
+    height: 0;
+    margin-bottom: 1rem;
+    border: 1px solid $bar;
+    border-top: 0;
+    overflow: hidden;
+    transition-property: height;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 225ms;
+  }
+
+  &__text {
+    padding: 20px;
+  }
+}
+
+.is-collapsed {
+  height: 0;
+  overflow: hidden;
+  transition-property: height;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 195ms;
+}

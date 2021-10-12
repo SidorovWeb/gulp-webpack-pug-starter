@@ -1,0 +1,17 @@
+.form-wrapper
+  form(novalidate).form.form-1
+    input(type="hidden" name="Форма" value="C главной страницы")
+    .form__line
+      label.form__label(for="name")
+      input.form__input#name(type='text' placeholder='Имя' name="Имя" )
+    .form__line
+      label.form__label(for="mail")
+      input.form__input#mail(type='email' placeholder="Ваш email" name="Email" data-required )
+    .form__line
+      label.form__label(for="phone")
+      input.form__input#phone.imask(type='tel' placeholder="Номер телефона"  name="Телефон" data-required )
+    .form__line
+      input.checkbox(type="checkbox" id="check" data-required)
+      label(for="check") Remember me
+    .form__line.form__block-btn
+      button.btn.btn--primary.btn--midle(type='submit') Отправить

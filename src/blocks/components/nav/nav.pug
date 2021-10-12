@@ -1,0 +1,6 @@
+mixin nav(array)
+	nav.nav
+		ul.nav__list
+			for item in array
+				li.nav__item
+					a(href="#").nav__link= item

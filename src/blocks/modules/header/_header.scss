@@ -1,0 +1,49 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 0rem;
+
+  &__wrapper {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 50;
+    background-color: cadetblue;
+    padding: 1rem;
+    transition: $transition;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &.scroll {
+    & .header__wrapper {
+      padding: 0rem;
+      background-color: orange;
+    }
+  }
+}
+
+.header__hamburger {
+  display: block;
+  @media (min-width: $md2 + px) {
+    display: none;
+  }
+}
+
+.header__brand,
+.header__nav,
+.header__button-wrapper,
+.header__hamburger {
+  flex: 1;
+}
+
+.header__brand {
+  text-align: center;
+}
+
+.header__button-wrapper {
+  text-align: end;
+}

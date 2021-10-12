@@ -1,0 +1,20 @@
+-
+	const collapse = [
+		{h: 'One', t: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', selected: true},
+		{h: 'Two', t: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',  },
+		{h: 'Three', t: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',  },
+		{h: 'Four', t: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',  },
+	]
+-
+
+.collapse
+	each d, idx in collapse
+		if d.selected
+			button.btn.collapse__header.selected(data-header=`collapse-${idx}`)=d.h
+		else
+			button.btn.collapse__header(data-header=`collapse-${idx}`)=d.h
+	each d, idx in collapse
+		if d.selected
+			.collapse__content.selected(data-collapse-content=`collapse-${idx}`)=d.t
+		else
+			.collapse__content(data-collapse-content=`collapse-${idx}`)=d.t

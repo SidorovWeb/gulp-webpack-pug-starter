@@ -1,0 +1,4 @@
+// focus-visible https://www.npmjs.com/package/focus-visible
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}

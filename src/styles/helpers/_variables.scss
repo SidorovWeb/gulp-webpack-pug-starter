@@ -1,0 +1,49 @@
+:root {
+  --vh: 100vh;
+  --main-bg: #ffffff;
+  --black: #000000;
+}
+
+html.theme-dark {
+  // Для поддерки ei11 необходимо также добавить переменные в switcherThemes.js => const themeDark
+  --main-bg: #000000;
+  --black: #ffffff;
+}
+
+// SIZE
+$font-size: 10px;
+$minWidth: 320px;
+$maxWidth: 1440; // ширина всего полотна
+$maxWidthContainer: 1270; // ширина всего полотна 1240px + 30px padding
+
+// media query @media (max-width: $md3 + px)
+$md1: $maxWidthContainer + 12px;
+$md2: 991.98;
+$md3: 767.98;
+$md4: 479.98;
+
+// Fonts
+$p-reg: 'ProximaNovaRegular', sans-serif;
+$p-bold: 'ProximaNovaBold', sans-serif;
+$p-light: 'ProximaNovaLight', sans-serif;
+
+// color
+$primary: #0060df;
+$secondary: #5a6268;
+$accent: #fd6f53;
+$danger: #c82333;
+$warning: #ffc107;
+$main-bg: #ffffff;
+$black: #000000;
+$white: #ffffff;
+$dark: #2a333d;
+$blue: #0258b3;
+$grey: #e3e3e3;
+$bg: red;
+$bar: #ccc;
+$gradient: linear-gradient(72deg, $bar, $bg);
+$overlay: rgba(23, 35, 53, 0.8);
+
+// Other
+$transition: 225ms ease-in-out;
+$cursor: pointer !default;

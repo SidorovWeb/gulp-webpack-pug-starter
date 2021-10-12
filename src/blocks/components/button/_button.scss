@@ -1,0 +1,155 @@
+$padding: 1em;
+
+.btn {
+  // сброс
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  text-decoration: none;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: visible;
+  vertical-align: middle;
+  font-family: inherit;
+  line-height: 1;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  transition-property: transform, color, background-color, border-color;
+  background-color: transparent;
+  background-origin: border-box;
+  color: inherit;
+  // outline: none;
+  /* другие стили*/
+  // min-width: 10rem;
+  padding: 0.625em $padding;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: 0.15rem solid red;
+    outline-offset: 1px;
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &[disabled] {
+    color: #d2d5db;
+    background: #6c7589;
+    cursor: not-allowed;
+  }
+
+  &--icon-svg {
+    display: inline-block;
+    vertical-align: middle;
+    fill: #6c7589;
+    width: 2.4rem;
+    height: 2.1rem;
+    margin-left: -$padding/4;
+    margin-right: $padding/2;
+  }
+
+  &--icon {
+    min-width: auto;
+    text-align: center;
+
+    & svg,
+    & .svg {
+      margin: 0;
+    }
+  }
+
+  &--two-lines {
+    flex-direction: column;
+    align-items: center;
+    & > *:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &--normal {
+    font-size: 1.6rem;
+  }
+  &--medium {
+    font-size: 2rem;
+  }
+  &--large {
+    font-size: 2.4rem;
+  }
+
+  &--default {
+    background-color: $grey;
+
+    &:hover {
+      background-color: lighten($grey, 5%);
+    }
+
+    &:active {
+      background-color: darken($grey, 5%);
+    }
+  }
+
+  &--primary {
+    background-color: $primary;
+    &:hover {
+      background-color: lighten($primary, 5%);
+    }
+
+    &:active {
+      background-color: darken($primary, 5%);
+    }
+  }
+
+  &--secondary {
+    background-color: $secondary;
+    &:hover {
+      background-color: lighten($secondary, 5%);
+    }
+    &:active {
+      background-color: darken($secondary, 5%);
+    }
+  }
+
+  &--danger {
+    background-color: $danger;
+    &:hover {
+      background-color: lighten($danger, 5%);
+    }
+    &:active {
+      background-color: darken($danger, 5%);
+    }
+  }
+
+  &--warning {
+    background-color: $warning;
+    &:hover {
+      background-color: lighten($warning, 5%);
+    }
+    &:active {
+      background-color: darken($warning, 5%);
+    }
+  }
+
+  &--radius {
+    border-radius: 0.3125em;
+  }
+
+  &--w100 {
+    min-width: 100%;
+  }
+
+  &--scale {
+    transform: scale(1);
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+}

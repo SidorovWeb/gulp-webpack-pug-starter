@@ -1,0 +1,39 @@
+.collapse {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+
+  &__header {
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    color: var(--black);
+    background: none;
+    cursor: pointer;
+    transition-property: color, background-color;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.3s;
+
+    &.selected {
+      color: var(--black);
+      background: $grey;
+    }
+
+    &:focus {
+      outline: 2px solid red;
+      outline-offset: 1px;
+    }
+  }
+
+  &__content {
+    display: none;
+    padding: 1.5rem;
+    color: var(--black);
+    background: $grey;
+
+    &.selected {
+      display: block;
+      opacity: 1;
+      animation: fadeIn 225ms;
+    }
+  }
+}

@@ -1,0 +1,160 @@
+.scroll-lock {
+  position: fixed;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.icon {
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+}
+
+// Hover effect
+.hover {
+  transition: box-shadow 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+  box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.04);
+
+  &:hover {
+    transform: translateY(-0.4rem);
+    transition-delay: 0s !important;
+    box-shadow: 0 4rem 4rem rgba(0, 0, 0, 0.09);
+  }
+}
+
+// скрыть визуально, убрав с экрана, но оставив доступным для средств чтения с экрана.
+.sr-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
+// view port on mobile
+.my-element {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+.img-background {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 20rem;
+  width: 100%;
+}
+
+// We go outside the container
+.break-out {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.header {
+  flex: 0 0 auto;
+}
+
+.content {
+  flex: 1 0 auto;
+  padding-top: 7rem;
+}
+
+.footer {
+  flex: 0 0 auto;
+}
+
+.container {
+  max-width: $maxWidthContainer + px;
+  margin: 0px auto;
+  padding: 0 15px;
+}
+
+.row {
+  @include row();
+  // 20px
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+.coll-1 {
+  @include coll();
+  flex: 0 1 8.33333333%;
+  max-width: 8.33333333%;
+}
+
+.coll-2 {
+  @include coll();
+  flex: 0 1 16.66666667%;
+  max-width: 16.66666667%;
+}
+
+.coll-3 {
+  @include coll();
+  flex: 0 1 25%;
+  max-width: 25%;
+}
+
+.coll-4 {
+  @include coll();
+  flex: 0 1 33.33333333%;
+  max-width: 33.33333333%;
+}
+
+.coll-5 {
+  @include coll();
+  flex: 0 1 41.66666667%;
+  max-width: 41.66666667%;
+}
+
+.coll-6 {
+  @include coll();
+  flex: 0 1 50%;
+  max-width: 50%;
+}
+
+.coll-7 {
+  @include coll();
+  flex: 0 1 58.33333333%;
+  max-width: 58.33333333%;
+}
+
+.coll-8 {
+  @include coll();
+  flex: 0 1 66.66666667%;
+  max-width: 66.66666667%;
+}
+
+.coll-9 {
+  @include coll();
+  flex: 0 1 75%;
+  max-width: 75%;
+}
+
+.coll-10 {
+  @include coll();
+  flex: 0 1 83.33333333%;
+  max-width: 83.33333333%;
+}
+
+.coll-11 {
+  @include coll();
+  flex: 0 1 91.66666667%;
+  max-width: 91.66666667%;
+}
+
+.coll-12 {
+  @include coll();
+  flex: 0 1 100%;
+  max-width: 100%;
+}

@@ -1,0 +1,59 @@
+@mixin row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin coll {
+  box-sizing: border-box;
+  word-wrap: break-word;
+  // 20px
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@mixin adaptive-value($property, $desctop, $mob) {
+  $addSize: $desctop - $mob;
+  $addMobileSize: $addSize + $addSize * 0.7;
+
+  @media (max-width: 320 + px) {
+    font-size: $mob + px;
+  }
+
+  @media (max-width: $md3 + px) {
+    #{$property}: calc(#{$mob + px} + #{$addMobileSize} * ((100vw - 320px) / #{$maxWidthContainer}));
+  }
+
+  @media (min-width: $md3 + px) {
+    #{$property}: calc(#{$mob + px} + #{$addSize} * (100vw / #{$maxWidthContainer}));
+  }
+
+  @media (min-width: $maxWidthContainer + px) {
+    #{$property}: $desctop + px;
+  }
+}
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {
+    @content;
+  }
+
+  :-moz-placeholder {
+    @content;
+  }
+
+  ::-moz-placeholder {
+    @content;
+  }
+
+  :-ms-input-placeholder {
+    @content;
+  }
+}
+
+@mixin not-last {
+  & > * {
+    &:not(:last-child) {
+      @content;
+    }
+  }
+}

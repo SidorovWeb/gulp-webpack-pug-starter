@@ -1,0 +1,60 @@
+/* Removing the checkbox from screen */
+.checkbox {
+  @extend .sr-only;
+}
+.checkbox + label {
+  position: relative;
+  padding-left: 2.5rem;
+  cursor: pointer;
+}
+
+/* Creating the fake checkbox */
+.checkbox + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 0.2rem;
+  background: $white;
+  border: 0.1rem solid $bar;
+  transition: all 225ms ease-in-out;
+}
+
+/* accessibility */
+.checkbox:hover + label:before {
+  background: $bar;
+  border: 0.1rem solid $secondary;
+}
+.checkbox:focus + label:before {
+  background: $bar;
+  border: 0.1rem solid $secondary;
+}
+
+/* Adding the SVG mark */
+
+.checkbox + label:after {
+  content: ' ';
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.7 8.7" enable-background="new 0 0 10.7 8.7"><path fill="white" d="M4.2 8.7c-.3 0-.5-.3-.7-.5l-3.2-3.1c-.4-.4-.4-1.1 0-1.5s1-.4 1.4 0l2.4 2.3 4.9-5.6c.4-.4 1-.5 1.4-.1.4.4.5 1 .1 1.4l-5.6 6.6c-.1.2-.4.5-.7.5z"/></svg>')
+    no-repeat; /* OMG you can embed SVG in background, awesoome */
+  position: absolute;
+  left: 0.2rem;
+  top: 0.3rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: transform 225ms ease-in-out;
+}
+
+/* Let's animate the mark */
+.checkbox:checked + label:before {
+  background: $primary;
+  border-color: $primary;
+}
+
+.checkbox:not(:checked) + label:after {
+  transform: scale(0);
+}
+.checkbox:checked + label:after {
+  transform: scale(0.9);
+}

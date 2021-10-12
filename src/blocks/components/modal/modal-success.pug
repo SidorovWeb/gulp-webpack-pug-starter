@@ -1,0 +1,9 @@
+#success.modal.modal-success
+	.modal__wrapp
+		.modal__window
+			.modal__top
+				button.btn.btn--icon.modal__icon-close-wrapper.modal__close(aria-label="Закрыть модальное окно" type="button")
+					+icon-mono('close')(class="modal__icon-close")
+			.modal-success__content
+				button.btn.btn--default.btn--normal.btn--radius.modal__trigger(type="button" data-trigger='error') modal 3
+				span.modal-success__title Мы скоро перезвоним :)

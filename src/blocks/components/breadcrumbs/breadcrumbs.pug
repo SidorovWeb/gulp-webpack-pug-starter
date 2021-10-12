@@ -1,0 +1,17 @@
+mixin breadcrumbs(items, last)
+	.breadcrumbs
+		ul
+			each item in items
+				li.breadcrumb__item
+					// if breadcrumb is single
+					if (items.length === 1)
+							span.breadcrumb__link= item
+					else
+						a(href="#" title=item).breadcrumb__link= item
+
+			if last
+				li.breadcrumb__item
+						span.breadcrumb__link-current= last
+
+//- +breadcrumbs(['Main page', 'News'], 'News detail')
+//- +breadcrumbs(['Main page'])

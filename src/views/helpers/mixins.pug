@@ -1,0 +1,25 @@
+mixin svg(name, className)
+	svg(class="svg" + ' ' + className, data-svg-name=name)
+
+
+mixin image(img,width,height,alt,png)
+	if png
+		picture
+			source(srcset=`${img}.webp`, type='image/webp')
+			img( src=`${img}.png`,width=width, height=height, alt=alt, loading="lazy" )
+	else
+		picture
+			source(srcset=`${img}.webp`, type='image/webp')
+			img( src=`${img}.jpg`,width=width, height=height, alt=alt, loading="lazy" )
+
+
+mixin icon-mono(name)
+	svg(class="icon icon-" + name)&attributes(attributes)
+		use(xlink:href="img/sprites/sprite-mono.svg#" + name)
+
+mixin icon-multi(name)
+	svg(class="icon icon-" + name)&attributes(attributes)
+		use(xlink:href="img/sprites/sprite-multi.svg#" + name)
+
+	//- lazyBg
+	//- data-bg=`${img}.png` data-bg-replace-webp=`${img}.webp`

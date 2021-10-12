@@ -1,0 +1,28 @@
+-
+  const accordion = [
+    { h: 'Heading 1', t: 'Lorem Ipsum is simply dummy text of the printing and' , i: 'arrow', open: true },
+    { h: 'Heading 2', t: 'Lorem Ipsum is simply dummy text of the printing and' , i: 'arrow' },
+    { h: 'Heading 3', t: 'Lorem Ipsum is simply dummy text of the printing and' , i: 'arrow' },
+    { h: 'Heading 4', t: 'Lorem Ipsum is simply dummy text of the printing and' , i: 'arrow' },
+    { h: 'Heading 5', t: 'Lorem Ipsum is simply dummy text of the printing and' , i: 'arrow' },
+    { h: 'Heading 6', t: 'Lorem Ipsum is simply dummy text of the printing and' , i: 'arrow' },
+  ]
+
+.block-2.accordion
+  each d in accordion
+    .accordion__item
+      if d.open
+        button(type="button").block-2__title.btn.accordion__title.open=d.h
+          +icon-mono(`${d.i}`)(class="accordion__icon")
+      else
+        button(type="button").block-2__title.btn.accordion__title=d.h
+          +icon-mono(`${d.i}`)(class="accordion__icon")
+      .block-2__collapse.accordion__content
+        p.accordion__text=d.t
+
+
+
+//- .accordion
+//-   .accordion__item
+//-     button(type="button").accordion__title
+//-     .accordion__content

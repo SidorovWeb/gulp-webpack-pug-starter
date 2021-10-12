@@ -1,0 +1,59 @@
+block variables
+include ../helpers/mixins.pug
+
+doctype html
+html(lang="ru")
+	head
+		meta(charset="utf-8")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		title #{title}
+		meta(name="viewport" content="width=device-width, initial-scale=no, maximum-scale=1, minimum-scale=1")
+		meta(name="description" content="Сайт об HTML и создании сайтов")
+		meta(property='og:image', content='img/hero/mobile-img.jpg')
+		meta(name='theme-color', content='#061626')
+		meta(name='msapplication-navbutton-color', content='#061626')
+		meta(name='apple-mobile-web-app-status-bar-style', content='#061626')
+		meta(name="msapplication-TileColor" content="#da532c")
+		link(rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png")
+		link(rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png")
+		link(rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png")
+		link(rel="preload" as="font" href="fonts/ProximaNova-Regular.woff2" type="font/woff2" crossorigin)
+		link(rel="preload" as="font" href="fonts/ProximaNova-Bold.woff2" type="font/woff2" crossorigin)
+		link(rel="preload" as="font" href="fonts/ProximaNova-Light.woff2" type="font/woff2" crossorigin)
+		script.
+			//- switch theme
+			function setTheme(themeName) {
+				localStorage.setItem('theme', themeName);
+				document.documentElement.className = themeName;
+			}
+
+			function toggleTheme() {
+				if (localStorage.getItem('theme') === 'theme-dark') {
+					setTheme('theme-light');
+					} else {
+						setTheme('theme-dark');
+					}
+				}
+
+			(function () {
+				if (localStorage.getItem('theme') === 'theme-dark') {
+					setTheme('theme-dark');
+					} else {
+					setTheme('theme-light');
+				}
+			})();
+		link(rel="stylesheet" href="styles/main.css")
+
+	body(class=name)
+		//- header
+		include  ../../blocks/modules/header/header.pug
+		//- content
+		block content
+		//- footer
+		include  ../../blocks/modules/footer/footer.pug
+		//- modal
+		include ../../blocks/components/modal/modal.pug
+		include ../../blocks/components/modal/modal-success.pug
+		include ../../blocks/components/modal/modal-error.pug
+		//- scripts
+		block scripts
