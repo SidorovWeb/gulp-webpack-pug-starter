@@ -9,6 +9,7 @@ gulp.task('serve', () => {
     server: './dist/',
     // port: 4000,
     // browser: 'google chrome',
+    open: false,
     notify: false,
   })
 

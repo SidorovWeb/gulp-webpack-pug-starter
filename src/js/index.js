@@ -15,6 +15,7 @@ import swiperSlider from '../blocks/components/slider/slider'
 import hamburger from '../blocks/components/hamburger/hamburger'
 import Menu from '../blocks/components/menu/menu'
 import Form from '../blocks/components/form/form'
+import Quiz from '../blocks/components/quiz/quiz'
 import imask from './modules/imask'
 import yandexMap from './modules/yandexMap'
 // import touch from './modules/touch'
@@ -58,9 +59,54 @@ window.addEventListener('DOMContentLoaded', () => {
     activeIndex: 1,
   })
 
-  swiperSlider()
+  new Quiz({
+    name: '.quiz',
+    slide: '.quiz__item',
+    btnPrev: '.quiz__btn-prev',
+    btnNext: '.quiz__btn-next',
+    pagination: '.quiz__pagination',
+    finish: '.quiz__finish',
+    printText: {
+      where: '.quiz__print-text',
+      insert: 'span',
+    },
+  })
 
-  hamburger()
+  new Form({
+    form: '.quiz__form',
+    errorClass: 'required',
+    validClass: 'success',
+    isValidClass: false,
+    settings: {
+      text: {
+        required: 'Введите ваше имя!',
+      },
+      email: {
+        required: 'Введите ваш email!',
+        error: 'Email имеет неверный формат!',
+      },
+    },
+
+    submitHandler: (form, event) => {
+      sendDataQuiz(form, event)
+    },
+  })
+
+  function sendDataQuiz(form) {
+    const xhr = new XMLHttpRequest()
+    const fd = new FormData(form)
+    const quiz = document.querySelector('.quiz')
+
+    xhr.addEventListener('load', function () {
+      quiz.classList.add('success')
+    })
+    xhr.addEventListener('error', function () {
+      quiz.classList.add('error')
+    })
+    xhr.open('POST', 'mail/mail.php')
+    xhr.send(fd)
+    form.reset()
+  }
 
   new Menu({
     elementHamburger: '.hamburger',
@@ -151,6 +197,10 @@ window.addEventListener('DOMContentLoaded', () => {
       }, 0)
     }, 2000)
   }
+
+  swiperSlider()
+
+  hamburger()
 
   imask()
 

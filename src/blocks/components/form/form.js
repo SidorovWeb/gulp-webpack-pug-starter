@@ -46,7 +46,9 @@ export default class Form {
       this.clickToSubmit = false
 
       if (this.checkInputs()) {
-        this.submitHandler(this.form, e)
+        if (this.submitHandler) {
+          this.submitHandler(this.form, e)
+        }
 
         setTimeout(() => {
           if (this.isValidClass) {
@@ -98,7 +100,7 @@ export default class Form {
 
   validText(input, value) {
     if (value === '') {
-      return this.setErrorFor(input, this.settings['texe']['required'])
+      return this.setErrorFor(input, this.settings['text']['required'])
     } else {
       return this.setSuccessFor(input)
     }

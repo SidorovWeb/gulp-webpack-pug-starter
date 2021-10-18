@@ -1,0 +1,70 @@
+.quiz
+  .quiz__wrapper
+    .quiz__pagination
+    .quiz__list
+      .quiz__item.active
+        h2 item 1
+        .quiz__content
+          .quiz__block
+            button.quiz__btn-question(type='button' data-quiz-value='50') 50
+          .quiz__block
+            button.quiz__btn-question(type='button' data-quiz-value='100') 100
+          .quiz__block
+            button.quiz__btn-question(type='button' data-quiz-value='150') 150
+          .quiz__block
+            button.quiz__btn-question(type='button' data-quiz-value='10') 10
+      .quiz__item
+        h2 item 2
+        .quiz__content
+          .quiz__block
+            label(for='question-1') checkbox 20
+            input#question-1.quiz__input(type='checkbox' data-quiz-value='20')
+          .quiz__block
+            label(for='question-2') checkbox 40
+            input#question-2.quiz__input(type='checkbox' data-quiz-value='40')
+          .quiz__block
+            label(for='question-3') radio 70
+            input#question-3.quiz__input(type='radio' name='radio' data-quiz-value='70')
+          .quiz__block
+            label(for='question-4') radio 120
+            input#question-4.quiz__input(type='radio' name='radio' data-quiz-value='120')
+      .quiz__item
+        h2 item 3
+        .quiz__content
+          .quiz__block
+            label(for='question-9') Text
+            input#question-9.quiz__input(type='text' placeholder='Text' data-quiz-value='1000')
+          .quiz__block
+            label(for='question-10') Text
+            input#question-10.quiz__input(type='text' placeholder='Text' data-quiz-value='2000')
+          .quiz__block
+            label(for='question-11') Text
+            input#question-11.quiz__input(type='text' placeholder='Text' data-quiz-value='3000')
+          .quiz__block
+            label(for='question-12') Text
+            input#question-12.quiz__input(type='text' placeholder='Text' data-quiz-value='4000')
+      .quiz__item
+        h2 item 3
+        .quiz__content
+          .quiz__block
+            button.quiz__btn-question(type='button' data-quiz-value='500') button 500
+          .quiz__block
+            button.quiz__btn-question(type='button' data-quiz-value='1500') button 1500
+    .quiz__finish
+        .quiz__finish-content
+          .quiz__finish-block.quiz__print-text
+            h2 Заполните форму
+            h3 Вы выбрали:
+          .quiz__finish-block
+            form.quiz__form(novalidate)
+              input(type="hidden" name="Форма" value="Quiz")
+              .quiz__block
+                label(for='name') Name
+                input#name.quiz__input(type='text' name='Name' placeholder='Name' data-quiz-value='' data-required)
+              .quiz__block
+                label(for='email') email
+                input#email.quiz__input(type='email' name="Email" placeholder='Email' data-quiz-value='' data-required)
+              button(type='submit') submit
+    .quiz__btns
+      button.quiz__btn-prev(type='button') Previous
+      button.quiz__btn-next(type='button') Next
