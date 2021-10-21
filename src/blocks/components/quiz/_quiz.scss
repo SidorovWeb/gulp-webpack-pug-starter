@@ -33,22 +33,73 @@
   background-color: lightcyan;
 }
 
-.quiz__btns {
+.quiz__list {
   display: flex;
-  justify-content: space-between;
-  padding-top: 20px;
+  background-color: inherit;
 }
-
 .quiz__item {
   display: none;
+  flex-direction: column;
+  opacity: 0;
+
+  flex-shrink: 0;
+  width: 100%;
+  background-color: inherit;
 }
 
 .quiz__item.active {
-  display: block;
+  display: flex;
+  opacity: 1;
+  animation: showEl 0.3s ease;
 }
 
-.quiz__btn-prev,
-.quiz__btn-next {
+// pagination start
+.quiz-pagination {
+  display: flex;
+  margin-top: 2rem;
+}
+
+.quiz__list {
+  min-height: 10rem;
+}
+
+.quiz-pagination__item {
+  position: relative;
+  display: block;
+  flex: 1;
+  height: 1rem;
+  background-color: gray;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+    background-color: red;
+  }
+
+  &.active {
+    &::before {
+      transform: translateX(0%);
+    }
+  }
+}
+
+// pagination end
+
+.quiz.error {
+  & .error__message {
+    color: red;
+  }
+}
+
+.quiz__prev,
+.quiz__next {
   color: white;
   background-color: skyblue;
   cursor: pointer;
@@ -56,59 +107,34 @@
   padding: 10px;
 }
 
-.quiz__btn-prev:active,
-.quiz__btn-next:active {
+.quiz__prev:active,
+.quiz__next:active {
   background-color: darkturquoise;
 }
 
-.quiz__btn-prev.disabled,
-.quiz__btn-next.disabled {
+.quiz__prev.disabled,
+.quiz__next.disabled {
   cursor: auto;
   pointer-events: none;
   background-color: gray;
 }
 
-.quiz-error {
-  color: red;
-}
-
-.quiz__pagination {
-  display: flex;
-  & > * {
-    margin-right: 1rem;
-  }
-}
-
-.quiz__pagination-item {
-  display: block;
-  flex: 1;
-  height: 1rem;
-  background-color: gray;
-  transition: all 225ms ease;
-}
-
-.quiz__pagination-item.active {
-  background-color: red;
-}
-
-.quiz__finish {
-  display: none;
-
-  &.active {
-    display: block;
-  }
-}
-
 .quiz.hide-elements {
-  & .quiz__pagination,
-  & .quiz__btns,
-  & .quiz__list {
+  & > *:not(.quiz__finish) {
     display: none;
+    opacity: 0;
   }
 
   & .quiz__finish {
     display: block;
+    opacity: 1;
+    animation: showEl 0.3s ease;
   }
+}
+
+.quiz__finish {
+  display: none;
+  opacity: 0;
 }
 
 .quiz__finish-content {
@@ -117,11 +143,11 @@
   grid-gap: 10px;
 }
 
-.print-text__wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-.print-text__item {
-  color: gray;
+@keyframes showEl {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

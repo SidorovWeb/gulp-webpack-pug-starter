@@ -1,19 +1,25 @@
 export default class Quiz {
-  constructor(options) {
-    this.quiz = document.querySelector(options.name)
-    this.nameSlide = options.slide
-    this.slides = document.querySelectorAll(options.slide)
-    this.btnPrev = document.querySelector(options.btnPrev)
-    this.btnNext = document.querySelector(options.btnNext)
-    this.pagination = document.querySelector(options.pagination)
+  constructor(quiz, options) {
+    this.quiz = document.querySelector(quiz)
+    this.elements = document.querySelectorAll('.quiz__item')
+    this.navigation = options.navigation
+    this.prevEl = this.navigation ? document.querySelector(this.navigation.prevEl) : null
+    this.nextEl = this.navigation ? document.querySelector(this.navigation.nextEl) : null
+
+    this.pagination = options.pagination
     this.paginationItems = null
+    this.paginationOutput = this.pagination ? document.querySelector(this.pagination.output) ?? this.quiz : null
+    this.addPaginationClassName = this.pagination ? this.pagination.addClassName ?? '' : null
+
     this.target = null
     this.resul = []
     this.finish = document.querySelector(options.finish)
-    this.printText = document.querySelector(options.printText.where)
-    this.createElemPrintText = options.printText.insert ?? 'span'
 
-    this.form = document.querySelector('.quiz__form') // ?
+    this.printValue = options.printValue ? document.querySelector(options.printValue.where) : null
+    this.tagWrapper = this.printValue ? this.printValue.tagWrapper ?? 'span' : 'span'
+
+    this.form = document.querySelector('.quiz__form') // необходимо проработать
+    this.errorMessage = options.errorMessage ?? 'Не выбран элемент'
 
     this.init()
   }
@@ -22,31 +28,19 @@ export default class Quiz {
     if (!this.quiz) {
       throw new Error('Обязательная опция "name"')
     }
-    if (!this.slides) {
-      throw new Error('Обязательная опция "slide"')
+
+    if (this.navigation) {
+      this.prevEl.classList.add('disabled')
+      this.prevEl.disabled = true
     }
 
-    this.btnPrev.classList.add('disabled')
-    this.btnPrev.disabled = true
-
-    if (this.pagination) {
-      for (let i = 0; i < this.slides.length; i++) {
-        const span = document.createElement('span')
-        span.classList.add(`${this.quiz.className}__pagination-item`)
-        this.pagination.append(span)
-      }
-
-      const first = this.pagination.querySelectorAll(`.${this.quiz.className}__pagination-item`)[0]
-      first.classList.add('active')
-
-      this.paginationItems = this.pagination.querySelectorAll(`.${this.quiz.className}__pagination-item`)
-    }
+    this.callPagination()
 
     this.listeners()
   }
 
   listeners() {
-    this.slides.forEach((item) => {
+    this.elements.forEach((item) => {
       item.addEventListener('click', (e) => {
         this.target = e.target
 
@@ -56,7 +50,7 @@ export default class Quiz {
 
         const activeElements = item.querySelectorAll(`.${this.target.className}`)
         const filtered = [...activeElements].filter((el) => el.getAttribute('type') === this.target.type)
-        const errorText = document.querySelector('.quiz-error')
+        const errorText = document.querySelector('.error__message')
 
         switch (this.target.type) {
           case 'button':
@@ -66,10 +60,18 @@ export default class Quiz {
 
             item.classList.remove('selected')
 
-            this.target.classList.toggle('selected')
+            this.target.classList.add('selected')
+
+            if (!this.navigation) {
+              this.nextSlide()
+            }
             break
           case 'checkbox':
             this.target.classList.toggle('selected')
+
+            if (!this.navigation) {
+              this.nextSlide()
+            }
             break
           case 'radio':
             filtered.forEach((el) => {
@@ -77,22 +79,31 @@ export default class Quiz {
             })
 
             this.target.classList.toggle('selected')
+
+            if (!this.navigation) {
+              this.nextSlide()
+            }
             break
           case 'text':
             // case 'tel':
             // case 'email':
             this.target.addEventListener(
               'blur',
-              function (event) {
+              (event) => {
                 if (!event.target.value) {
                   event.target.classList.remove('selected')
                 } else {
                   event.target.classList.add('selected')
                   event.target.dataset.quizValue = event.target.value
+
+                  if (!this.navigation) {
+                    this.nextSlide()
+                  }
                 }
               },
               true
             )
+
             break
         }
 
@@ -102,18 +113,20 @@ export default class Quiz {
       })
     })
 
-    this.btnPrev.addEventListener('click', () => {
-      this.prevSlide()
-    })
+    if (this.navigation) {
+      this.prevEl.addEventListener('click', () => {
+        this.prevSlide()
+      })
 
-    this.btnNext.addEventListener('click', () => {
-      this.nextSlide()
-    })
+      this.nextEl.addEventListener('click', () => {
+        this.nextSlide()
+      })
+    }
   }
 
   getIndexCurrentSlide() {
     let index
-    this.slides.forEach((item, i) => {
+    this.elements.forEach((item, i) => {
       if (item.classList.contains('active')) {
         index = i
       }
@@ -123,36 +136,46 @@ export default class Quiz {
   }
 
   getCurrentClide() {
-    return this.slides[this.getIndexCurrentSlide()]
+    return this.elements[this.getIndexCurrentSlide()]
   }
 
   prevSlide() {
     const current = this.getCurrentClide()
-    const prev = this.slides[this.getIndexCurrentSlide() - 1]
+    const prev = this.elements[this.getIndexCurrentSlide() - 1]
+    const errorText = document.querySelector('.error__message')
+
+    if (errorText) {
+      errorText.remove()
+    }
 
     current.classList.remove('active')
     prev.classList.add('active')
-
-    this.btnNext.classList.remove('disabled')
-    this.btnNext.disabled = false
 
     if (this.pagination) {
       const currentPaginationItem = this.paginationItems[this.getIndexCurrentSlide() + 1]
       currentPaginationItem.classList.remove('active')
     }
 
+    if (this.navigation) {
+      this.nextEl.classList.remove('disabled')
+      this.nextEl.disabled = false
+    }
+
     // Если первый слайд
     if (this.getIndexCurrentSlide() === 0) {
-      this.btnPrev.classList.add('disabled')
-      this.btnPrev.disabled = true
-      // this.btnNext.focus()
+      if (this.navigation) {
+        this.prevEl.classList.add('disabled')
+        this.prevEl.disabled = true
+      }
+
+      // this.nextEl.focus()
     }
   }
 
   nextSlide() {
     const current = this.getCurrentClide()
-    const next = this.slides[this.getIndexCurrentSlide() + 1]
-    const errorText = document.querySelector('.quiz-error')
+    const next = this.elements[this.getIndexCurrentSlide() + 1]
+    const errorText = document.querySelector('.error__message')
 
     if (!current.querySelector('.selected')) {
       if (errorText) {
@@ -161,24 +184,27 @@ export default class Quiz {
 
       const span = document.createElement('span')
 
-      span.classList.add('quiz-error')
-      span.innerHTML = 'Не выбран элемент'
-      current.append(span)
+      span.classList.add('error__message')
+      span.innerHTML = this.errorMessage
+      this.quiz.append(span)
+
+      this.quiz.classList.add('error')
       return
     }
 
     if (!next) {
       this.quiz.classList.add('hide-elements')
+
       const array = this.quiz.querySelectorAll(`.selected`)
       const inputHiden = document.querySelectorAll('.input-hidden')
 
-      if (this.printText) {
+      if (this.printValue) {
         const wrapper = document.createElement('div')
         wrapper.classList.add('print-text__wrapper')
-        this.printText.append(wrapper)
+        this.printValue.append(wrapper)
 
         array.forEach((item) => {
-          const el = document.createElement(this.createElemPrintText)
+          const el = document.createElement(this.tagWrapper)
           el.innerHTML = item.dataset.quizValue
           el.classList.add('print-text__item')
           wrapper.append(el)
@@ -190,6 +216,7 @@ export default class Quiz {
           ih.remove()
         }
       })
+
       array.forEach((el) => {
         this.createHiddenInput(el.dataset.quizValue)
       })
@@ -200,9 +227,6 @@ export default class Quiz {
     current.classList.remove('active')
     next.classList.add('active')
 
-    this.btnPrev.classList.remove('disabled')
-    this.btnPrev.disabled = false
-
     if (errorText) {
       errorText.remove()
     }
@@ -212,10 +236,15 @@ export default class Quiz {
       currentPaginationItem.classList.add('active')
     }
 
+    if (this.navigation) {
+      this.prevEl.classList.remove('disabled')
+      this.prevEl.disabled = false
+    }
+
     // Если последний слайд
-    // if (this.getIndexCurrentSlide() === this.slides.length - 1) {
-    //   this.btnNext.classList.add('disabled')
-    //   this.btnNext.disabled = true
+    // if (this.getIndexCurrentSlide() === this.elements.length - 1) {
+    //   this.nextEl.classList.add('disabled')
+    //   this.nextEl.disabled = true
     // }
   }
 
@@ -227,6 +256,28 @@ export default class Quiz {
     input.setAttribute('data-quiz-hidden', 'true')
     input.classList.add('input-hidden')
     this.form.append(input)
+  }
+
+  callPagination() {
+    if (this.pagination) {
+      const wrapper = document.createElement('div')
+      wrapper.classList.add('quiz-pagination')
+
+      this.addPaginationClassName ? wrapper.classList.add(this.addPaginationClassName) : null
+
+      for (let i = 0; i < this.elements.length; i++) {
+        const span = document.createElement('span')
+        span.classList.add('quiz-pagination__item')
+        wrapper.append(span)
+      }
+
+      this.paginationOutput.append(wrapper)
+
+      const first = this.paginationOutput.querySelectorAll(`.quiz-pagination__item`)[0]
+      first.classList.add('active')
+
+      this.paginationItems = this.paginationOutput.querySelectorAll(`.quiz-pagination__item`)
+    }
   }
 
   init() {

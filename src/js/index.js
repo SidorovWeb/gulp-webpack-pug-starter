@@ -59,17 +59,24 @@ window.addEventListener('DOMContentLoaded', () => {
     activeIndex: 1,
   })
 
-  new Quiz({
-    name: '.quiz',
-    slide: '.quiz__item',
-    btnPrev: '.quiz__btn-prev',
-    btnNext: '.quiz__btn-next',
-    pagination: '.quiz__pagination',
-    finish: '.quiz__finish',
-    printText: {
-      where: '.quiz__print-text',
-      insert: 'span',
+  new Quiz('.quiz', {
+    navigation: {
+      prevEl: '.quiz__prev',
+      nextEl: '.quiz__next',
     },
+    pagination: true,
+    // pagination: {
+    // По дефолту выводится в name
+    // output: '.quiz__pagination', // куда вывести пагинацию
+    // addClassName: '',
+    // },
+    finish: '.quiz__finish', // что показать после успешного прохождения
+    printValue: {
+      // вывод значений, по дефолту не выводится
+      where: '.quiz-output-values', // куда вывести
+      tagWrapper: 'span', // в какой tag
+    },
+    errorMessage: 'Вы ничего не выбрали',
   })
 
   new Form({
