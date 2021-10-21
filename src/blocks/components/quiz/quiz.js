@@ -13,7 +13,6 @@ export default class Quiz {
 
     this.target = null
     this.resul = []
-    this.finish = document.querySelector(options.finish)
 
     this.printValue = options.printValue ? document.querySelector(options.printValue.where) : null
     this.tagWrapper = this.printValue ? this.printValue.tagWrapper ?? 'span' : 'span'

@@ -70,7 +70,6 @@ window.addEventListener('DOMContentLoaded', () => {
     // output: '.quiz__pagination', // куда вывести пагинацию
     // addClassName: '',
     // },
-    finish: '.quiz__finish', // что показать после успешного прохождения
     printValue: {
       // вывод значений, по дефолту не выводится
       where: '.quiz-output-values', // куда вывести
