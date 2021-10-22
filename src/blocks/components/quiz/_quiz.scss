@@ -9,6 +9,10 @@
   justify-content: space-between;
 }
 
+.quiz__list {
+  min-height: 10rem;
+}
+
 .quiz__content {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -53,44 +57,58 @@
   animation: showEl 0.3s ease;
 }
 
-// pagination start
-.quiz-pagination {
+// progress start
+.quiz-progress {
   display: flex;
   margin-top: 2rem;
-}
-
-.quiz__list {
-  min-height: 10rem;
-}
-
-.quiz-pagination__item {
-  position: relative;
-  display: block;
-  flex: 1;
   height: 1rem;
-  background-color: gray;
-  overflow: hidden;
+}
 
-  &::before {
-    content: '';
+.quiz-progress--line {
+  background-color: gray;
+  position: relative;
+  .quiz-progress__fill {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    transform: translateX(-100%);
-    transition: all 0.3s ease;
+    height: 1rem;
+    width: 0%;
     background-color: red;
+    transition: width 0.3s ease;
   }
+}
 
-  &.active {
+.quiz-progress--step {
+  & > *:not(:last-child) {
+    margin-right: 10px;
+  }
+  .quiz-progress__item {
+    overflow: hidden;
+    position: relative;
+    flex: 1;
+    background-color: gray;
+
     &::before {
-      transform: translateX(0%);
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform: translateX(-100%);
+      transition: all 0.3s ease;
+      background-color: red;
+    }
+
+    &.active {
+      &::before {
+        transform: translateX(0%);
+      }
     }
   }
 }
 
-// pagination end
+// progress end
 
 .quiz.error {
   & .error__message {

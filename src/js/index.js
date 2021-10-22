@@ -64,18 +64,23 @@ window.addEventListener('DOMContentLoaded', () => {
       prevEl: '.quiz__prev',
       nextEl: '.quiz__next',
     },
-    pagination: true,
-    // pagination: {
-    // По дефолту выводится в name
-    // output: '.quiz__pagination', // куда вывести пагинацию
-    // addClassName: '',
+    progress: true, //  По дефолту 'line', выводится в '.quiz'.
+    // progress: {
+    // name: 'step', // Может быть 'line' или 'step'
+    // output: 'Имя класса', // куда вывести progress
+    // },
+    fraction: true, // По дефолту выводится в '.quiz'
+    // fraction: {
+    //   delimiter: 'из', // По дефолту '/'
+    //   output: 'Имя класса', // куда вывести fraction
     // },
     printValue: {
       // вывод значений, по дефолту не выводится
-      where: '.quiz-output-values', // куда вывести
+      where: '.quiz-output-values', // куда вывести printValue
       tagWrapper: 'span', // в какой tag
     },
-    errorMessage: 'Вы ничего не выбрали',
+    errorMessage: 'Вы ничего не выбрали', // По дефолту не выводит
+    // errorMessage: false
   })
 
   new Form({
