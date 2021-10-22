@@ -60,6 +60,7 @@ window.addEventListener('DOMContentLoaded', () => {
   })
 
   new Quiz('.quiz', {
+    // navigation: false, // Отключить навигацию
     navigation: {
       prevEl: '.quiz__prev',
       nextEl: '.quiz__next',
