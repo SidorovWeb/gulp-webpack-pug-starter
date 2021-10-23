@@ -18,7 +18,6 @@ export default class Quiz {
     this.printValue = options.printValue ? document.querySelector(options.printValue.where) : null
     this.tagWrapper = this.printValue ? this.printValue.tagWrapper ?? 'span' : 'span'
     this.errorMessage = options.errorMessage ? options.errorMessage ?? 'Не выбран элемент' : null
-    this.form = document.querySelector('.quiz__form') // необходимо проработать
 
     this.init()
   }
@@ -265,7 +264,7 @@ export default class Quiz {
     input.setAttribute('value', value)
     input.setAttribute('data-quiz-hidden', 'true')
     input.classList.add('input-hidden')
-    this.form.append(input)
+    this.quiz.querySelector('.quiz__finish').querySelector('form').append(input)
   }
 
   callProgress() {
