@@ -169,3 +169,21 @@
     opacity: 1;
   }
 }
+
+.quiz__success {
+  display: none;
+  opacity: 0;
+}
+
+.quiz.success {
+  & > *:not(.quiz__success) {
+    display: none;
+    opacity: 0;
+  }
+
+  & .quiz__success {
+    display: block;
+    opacity: 1;
+    animation: showEl 0.3s ease;
+  }
+}

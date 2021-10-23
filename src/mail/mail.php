@@ -7,7 +7,7 @@ if ($method !== 'POST') {
 }
 
 $project_name = 'Тестовая сборка';
-$admin_email = '>>>>> НЕ ЗАБУДЬТЕ EMAIL <<<<<<';
+$admin_email = 'sidorovweb@gmail.com';
 $form_subject = 'Заявка с сайта тест';
 $message = '';
 
@@ -31,7 +31,7 @@ function adopt($text) {
   return '=?utf-8?B?'.base64_encode($text).'?=';
 }
 
-$message = "<table style='width: 100%;'>$message</table>";
+$message = "<table style='width: 100%; background-color: #fff;'>$message</table>";
 
 $headers  = "MIME-Version: 1.0\r\n";
 $headers .= "Content-type: text/html; charset=utf-8\r\n";
