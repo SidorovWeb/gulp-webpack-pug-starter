@@ -9,8 +9,13 @@
     "url": "https://github.com/andreyalexeich/gulp-pug-starter.git"
   },
   "browserslist": [
-    "last 2 versions",
-    "not IE 11"
+    "last 1 Chrome version",
+    "last 1 Firefox version",
+    "last 2 Edge version",
+    "last 2 Safari major versions",
+    "last 2 iOS major versions",
+    "not IE 11",
+    "not dead"
   ],
   "license": "MIT",
   "scripts": {

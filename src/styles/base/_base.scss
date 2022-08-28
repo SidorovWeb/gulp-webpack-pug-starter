@@ -177,7 +177,7 @@ h2 {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  grid-gap: 1.5rem;
+  gap: 1.5rem;
   text-align: center;
 
   &__item {
@@ -231,7 +231,7 @@ h2 {
 .columns {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
-  grid-gap: 1.5rem;
+  gap: 1.5rem;
 
   &__item {
     background-color: burlywood;

@@ -16,7 +16,7 @@
 .quiz__content {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
+  gap: 10px;
 }
 
 .quiz__btn-question {
@@ -158,7 +158,7 @@
 .quiz__finish-content {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
+  gap: 10px;
 }
 
 @keyframes showEl {
