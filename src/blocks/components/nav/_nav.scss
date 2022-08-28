@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
 
-  @media (max-width: $md2 + px) {
+  @media (max-width: $md2) {
     position: fixed;
     left: 0px;
     top: 0px;
@@ -11,36 +11,13 @@
     width: 100%;
     pointer-events: none;
     transform: translateX(-101%);
-
-    & .hamburger {
-      display: flex;
-    }
-
-    &.menu-open {
-      pointer-events: auto;
-      z-index: 99;
-      cursor: pointer;
-      transform: translateX(0);
-      animation: move 225ms ease;
-    }
-
-    &.menu-close {
-      animation: moveOut 225ms ease;
-    }
-  }
-
-  & .hamburger {
-    display: none;
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
   }
 
   &__list {
     display: flex;
     align-items: center;
 
-    @media (max-width: $md2 + px) {
+    @media (max-width: $md2) {
       height: 100%;
       width: 100%;
       flex-direction: column;
@@ -57,11 +34,11 @@
 
     & > *:not(:last-child) {
       margin-right: 5.6rem;
-      @media (max-width: $md2 + px) {
+      @media (max-width: $md2) {
         margin-right: 3rem;
       }
 
-      @media (max-width: $md2 + px) {
+      @media (max-width: $md2) {
         margin-right: 0;
         margin-bottom: 2rem;
       }
@@ -85,11 +62,23 @@
       color: red;
     }
 
-    @media (max-width: $md2 + px) {
+    @media (max-width: $md2) {
       font-size: 2rem;
       line-height: 2.8rem;
     }
   }
+}
+
+.hamburger_active .nav {
+  transform: translateX(0);
+  pointer-events: auto;
+  z-index: 99;
+  cursor: pointer;
+  animation: move 225ms ease;
+}
+
+.hamburger_inactive .nav {
+  animation: moveOut 105ms ease;
 }
 
 @keyframes move {

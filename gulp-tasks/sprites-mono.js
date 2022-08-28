@@ -1,6 +1,6 @@
 'use strict'
 
-import { paths } from '../gulpfile.babel'
+import { paths } from '../gulpfile.js'
 import gulp from 'gulp'
 import svgSprite from 'gulp-svg-sprite'
 import browsersync from 'browser-sync'

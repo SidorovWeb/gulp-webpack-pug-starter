@@ -1,6 +1,6 @@
 'use strict'
-const path = require('path')
-import { paths } from '../gulpfile.babel'
+import path from 'path'
+import { paths } from '../gulpfile.js'
 import gulp from 'gulp'
 import tap from 'gulp-tap'
 import svgmin from 'gulp-svgmin'
@@ -30,9 +30,7 @@ gulp.task('svg', () => {
       tap(function (file) {
         if (path.extname(file.path) === '.svg') {
           const name = path.basename(file.path, '.svg')
-          file.contents = Buffer.from(
-            file.contents.toString().replace(/<svg/g, `<svg id="${name}"`)
-          )
+          file.contents = Buffer.from(file.contents.toString().replace(/<svg/g, `<svg id="${name}"`))
         }
       })
     )

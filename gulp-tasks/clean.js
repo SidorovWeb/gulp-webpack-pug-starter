@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
-import gulp from 'gulp';
-import del from 'del';
+import gulp from 'gulp'
+import { deleteAsync } from 'del'
 
 gulp.task('clean', () => {
-    return del(['./dist/*']);
-});
+  return deleteAsync(['./dist/*'])
+})

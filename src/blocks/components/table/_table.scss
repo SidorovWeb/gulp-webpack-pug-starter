@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: flex-start;
 
-  @media (max-width: $md2 + px) {
+  @media (max-width: $md2) {
     display: block;
     max-width: 100%;
   }
@@ -23,7 +23,7 @@
 }
 
 .row-table.header-table {
-  @media (max-width: $md2 + px) {
+  @media (max-width: $md2) {
     display: none;
   }
 }
@@ -36,14 +36,14 @@
   text-align: left;
   width: 100%;
 
-  @media (max-width: $md2 + px) {
+  @media (max-width: $md2) {
     display: block;
     margin-bottom: 2rem;
   }
 }
 
 .row-table .cell-table:before {
-  @media (max-width: $md2 + px) {
+  @media (max-width: $md2) {
     margin-bottom: 0.5rem;
     content: attr(data-title);
     min-width: 9.8rem;
@@ -61,11 +61,11 @@
   width: 100%;
   flex-shrink: 0;
 
-  @media (max-width: $md3 + px) {
+  @media (max-width: $md3) {
     max-width: 16rem;
   }
 
-  @media (max-width: $md2 + px) {
+  @media (max-width: $md2) {
     max-width: 100%;
   }
 }
@@ -82,11 +82,11 @@
   padding-right: 6.2rem;
   flex-grow: 1;
 
-  @media (max-width: $md3 + px) {
+  @media (max-width: $md3) {
     padding-right: 2.2rem;
   }
 
-  @media (max-width: $md2 + px) {
+  @media (max-width: $md2) {
     padding-right: 0;
     padding-left: 0;
   }
@@ -102,11 +102,11 @@
   width: 100%;
   flex-shrink: 0;
 
-  @media (max-width: $md3 + px) {
+  @media (max-width: $md3) {
     max-width: 12rem;
   }
 
-  @media (max-width: $md2 + px) {
+  @media (max-width: $md2) {
     max-width: 100%;
   }
 }
@@ -131,12 +131,12 @@
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
 
-  @media (max-width: $md2 + px) {
+  @media (max-width: $md2) {
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
 
-  @media (max-width: $md2 + px) {
+  @media (max-width: $md2) {
     padding-top: 0.5rem;
   }
 }

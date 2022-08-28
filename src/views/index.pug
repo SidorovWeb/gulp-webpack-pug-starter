@@ -77,10 +77,10 @@ block content
 			.grid
 				each _, idx in Array(11)
 					.grid__item(class=`grid__item_${idx+1}`)= idx + 1
-			h2 Css grid colomns
-			.colomns
+			h2 Css grid columns
+			.columns
 				each _, idx in Array(4)
-					.colomns__item= idx + 1
+					.columns__item= idx + 1
 			h2 Card
 			.card
 				.card__img
@@ -88,7 +88,7 @@ block content
 				.card__content
 					h3
 						a(class="card__link" href="#") Title
-						p Subtite
+						p Subtitle
 				span.card__tag My tag
 			h2 Card
 			.card-2
@@ -123,7 +123,7 @@ block content
 			+icon-mono('facebook')
 			+icon-mono('instagram')
 			h2 Адаптивный блок
-			.adaptivDiv
+			.adaptiveDiv
 			h2 Lazy load Maps
 			#map(style="width: 400px; height: 400px;"
 			data-apikey="ваш API-ключ",

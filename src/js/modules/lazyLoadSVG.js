@@ -1,5 +1,5 @@
-import { elementWatcher } from './observer'
-import { getAttr } from './utils'
+import { elementWatcher } from './observer.js'
+import { getAttr } from './utils.js'
 
 const arr = document.querySelectorAll('[data-svg-name]')
 

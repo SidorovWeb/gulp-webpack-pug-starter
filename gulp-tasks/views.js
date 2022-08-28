@@ -1,15 +1,12 @@
 'use strict'
 
-import { paths } from '../gulpfile.babel'
+import { paths, config } from '../gulpfile.js'
 import gulp from 'gulp'
 import pug from 'gulp-pug'
 import gulpif from 'gulp-if'
 import replace from 'gulp-replace'
 import browsersync from 'browser-sync'
-import yargs from 'yargs'
-
-const argv = yargs.argv,
-  production = !!argv.production
+import plumber from 'gulp-plumber'
 
 gulp.task('views', () => {
   return gulp
@@ -19,8 +16,9 @@ gulp.task('views', () => {
         pretty: true,
       })
     )
-    .pipe(gulpif(production, replace('.css', '.min.css')))
-    .pipe(gulpif(production, replace('.js', '.min.js')))
+    .pipe(plumber(config.plumber))
+    .pipe(gulpif(config.production, replace('.css', '.min.css')))
+    .pipe(gulpif(config.production, replace('.js', '.min.js')))
     .pipe(gulp.dest(paths.views.dist))
     .pipe(browsersync.stream())
 })

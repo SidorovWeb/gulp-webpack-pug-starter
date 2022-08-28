@@ -11,24 +11,24 @@
   padding-right: 1rem;
 }
 
-@mixin adaptive-value($property, $desctop, $mob) {
-  $addSize: $desctop - $mob;
+@mixin adaptive-value($property, $desktop, $mob) {
+  $addSize: $desktop - $mob;
   $addMobileSize: $addSize + $addSize * 0.7;
 
-  @media (max-width: 320 + px) {
+  @media (max-width: 320px) {
     font-size: $mob + px;
   }
 
-  @media (max-width: $md3 + px) {
+  @media (max-width: $md3) {
     #{$property}: calc(#{$mob + px} + #{$addMobileSize} * ((100vw - 320px) / #{$maxWidthContainer}));
   }
 
-  @media (min-width: $md3 + px) {
+  @media (min-width: $md3) {
     #{$property}: calc(#{$mob + px} + #{$addSize} * (100vw / #{$maxWidthContainer}));
   }
 
-  @media (min-width: $maxWidthContainer + px) {
-    #{$property}: $desctop + px;
+  @media (min-width: ($md1)) {
+    #{$property}: $desktop + px;
   }
 }
 

@@ -12,7 +12,7 @@ export function closestItemByClass(item, className) {
   return null
 }
 
-export function scrolLock() {
+export function isScrollLock() {
   const html = document.documentElement
 
   if (!html.classList.contains('scroll-lock')) {
@@ -44,7 +44,7 @@ export function focusElements() {
   ]
 }
 
-export function getScroll(height) {
+export function isScroll(height) {
   var d = document,
     b = d.body,
     e = d.documentElement,

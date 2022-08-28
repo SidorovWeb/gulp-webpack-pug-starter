@@ -109,7 +109,7 @@ $height: 30px;
     transition-duration: 0.3s;
     cursor: pointer;
 
-    @media (max-width: $md3 + px) {
+    @media (max-width: $md3) {
       font-size: 1.8rem;
       line-height: 5rem;
     }

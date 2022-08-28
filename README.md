@@ -1,5 +1,5 @@
 - node: v14.17.6
-- yarn: 1.22.10
+- yarn: 1.22.17
 
 # Запустить сборку
 
@@ -14,11 +14,11 @@
 - `yarn run build:views` - скомпилировать Pug-файлы
 - `yarn run build:styles` - скомпилировать SCSS-файлы
 - `yarn run build:scripts` - собрать JS-файлы
-- `yarn run build:images` - собрать изображения
 - `yarn run build:webp` - конвертировать изображения в формат `.webp`
 - `yarn run build:sprites`- собрать спрайты
 - `yarn run build:fonts` - собрать шрифты
 - `yarn run build:gzip` - собрать конфигурацию Apache
+- `yarn run build:images` - собрать изображения
 
 ## Файловая структура
 
@@ -42,49 +42,12 @@ gulp-pug-starter
 │   ├── styles
 │   ├── views
 │   └── .htaccess
-├── gulpfile.babel.js
+├── gulpfile.js
 ├── webpack.config.js
 ├── package.json
-├── .babelrc.js
+├── .babelrc.cjs
 ├── .eslintrc.json
 ├── .stylelintrc
 ├── .stylelintignore
 └── .gitignore
-```
-
-### Изображения
-
-- изображения автоматически конвертируются в формат `.webp`.
-
-### SVG
-
-**sprite-mono**
-
-- Одноцветные иконки.
-
-**sprite-multi**
-
-- Цветные иконки.
-
-**svg**
-
-- Сложные изображения.
-
-### Сторонние библиотеки
-
-- для подключения стилевых файлов библиотек импортируйте их в файл `src/styles/vendor/_libs.scss`
-
-:warning: Если в вашем проекте используется несколько библиотек, которые необходимо подключать на нескольких страницах, во избежании ошибок нужно:
-
-- по пути `src/js/import` создать папку `pages`
-- в папке `pages` создать js-файл для страницы, например, `pageA.js`, и импортировать туда библиотеку, которая будет использоваться только на этой странице
-  - аналогично проделать шаг для дополнительных страниц
-- в файле `webpack.config.js` в точку входа добавить js-файлы страниц, пример:
-
-```javascript
-entry: {
-    main: "./src/js/index.js",
-    pageA: "./src/js/import/pages/pageA.js",
-    pageB: "./src/js/import/pages/pageB.js"
-}
 ```

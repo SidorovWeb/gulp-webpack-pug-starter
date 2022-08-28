@@ -1,9 +1,9 @@
-import { focusElements, getScroll, scrolLock, bodyScrollControl } from '../../../js/modules/utils'
+import { focusElements, isScroll, isScrollLock, bodyScrollControl } from '../../../js/modules/utils.js'
 
 export default class Modal {
   constructor(options) {
     this.triggers = document.querySelectorAll(options.trigger)
-    this.closeBnts = document.querySelectorAll(options.close)
+    this.closeBtns = document.querySelectorAll(options.close)
     this.modal = document.querySelector(options.modal)
     this.modalClassName = options.modal
     this.touch = options.touch
@@ -45,7 +45,7 @@ export default class Modal {
       this.panel = document.querySelector(this.touch.panel)
       this.window = document.querySelector(this.touch.window)
       this.windowInnerWidth = window.innerWidth
-      this.windowHeigth = this.modal.offsetHeight
+      this.windowHeight = this.modal.offsetHeight
       this.windowStartPosY = null
       this.windowEndPosY = null
       this.panelPosY = null
@@ -68,7 +68,7 @@ export default class Modal {
       })
     }
 
-    this.closeBnts.forEach((cBtn) => {
+    this.closeBtns.forEach((cBtn) => {
       cBtn.addEventListener('click', this.close.bind(this))
     })
 
@@ -134,18 +134,18 @@ export default class Modal {
     this.currentModal =
       this.triggers.length != 0 ? document.querySelector(`#${modalName}`) : document.querySelector(`${modalName}`)
 
-    if (this.isOpened && getScroll('Height')) {
+    if (this.isOpened && isScroll('Height')) {
       bodyScrollControl()
     }
     this.currentModal.classList.remove('modal-close')
     this.currentModal.classList.add('modal-open')
 
     if (!this.nextWindows) {
-      scrolLock()
+      isScrollLock()
       this.nextWindows = true
     }
 
-    this.focusContol()
+    this.focusControl()
   }
 
   close() {
@@ -173,8 +173,8 @@ export default class Modal {
     this.isOpened = false
 
     bodyScrollControl()
-    scrolLock()
-    this.focusContol()
+    isScrollLock()
+    this.focusControl()
 
     window.removeEventListener('keydown', this.handlers.keydown)
   }
@@ -232,12 +232,12 @@ export default class Modal {
   }
 
   endOptions() {
-    this.window.style.transform = `translate3d(0px,${this.windowHeigth}px,1px)`
+    this.window.style.transform = `translate3d(0px,${this.windowHeight}px,1px)`
     this.window.style.transition = this.transition
     this.close()
   }
 
-  focusContol() {
+  focusControl() {
     const nodes = this.currentModal.querySelectorAll(this.focusElements)
 
     if (this.isOpened) {

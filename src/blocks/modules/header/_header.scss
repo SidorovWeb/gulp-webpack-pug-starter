@@ -26,17 +26,9 @@
   }
 }
 
-.header__hamburger {
-  display: block;
-  @media (min-width: $md2 + px) {
-    display: none;
-  }
-}
-
 .header__brand,
 .header__nav,
-.header__button-wrapper,
-.header__hamburger {
+.header__button-wrapper {
   flex: 1;
 }
 

@@ -5,7 +5,7 @@
 }
 
 html.theme-dark {
-  // Для поддерки ei11 необходимо также добавить переменные в switcherThemes.js => const themeDark
+  // Для поддержки ei11 необходимо также добавить переменные в switcherThemes.js => const themeDark
   --main-bg: #000000;
   --black: #ffffff;
 }
@@ -13,14 +13,13 @@ html.theme-dark {
 // SIZE
 $font-size: 10px;
 $minWidth: 320px;
-$maxWidth: 1440; // ширина всего полотна
 $maxWidthContainer: 1270; // ширина всего полотна 1240px + 30px padding
 
 // media query @media (max-width: $md3 + px)
 $md1: $maxWidthContainer + 12px;
-$md2: 991.98;
-$md3: 767.98;
-$md4: 479.98;
+$md2: 991.98px;
+$md3: 767.98px;
+$md4: 479.98px;
 
 // Fonts
 $p-reg: 'ProximaNovaRegular', sans-serif;

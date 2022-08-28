@@ -1,6 +1,4 @@
-const path = require('path')
-
-module.exports = {
+export default {
   entry: {
     main: './src/js/index.js',
   },
@@ -27,31 +25,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules\/(?!(dom7|swiper)\/).*/,
+        test: /\.m?js$/,
+        // exclude: /node_modules\/(?!(dom7|swiper)\/).*/,
+        exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              [
-                '@babel/preset-env',
-                {
-                  //   debug: true,
-                  corejs: '3.19.1',
-                  useBuiltIns: 'usage',
-                },
-              ],
-            ],
+            presets: ['@babel/preset-env'],
           },
         },
       },
     ],
-  },
-
-  resolve: {
-    alias: {
-      '%modules%': path.resolve(__dirname, 'src/blocks/modules'),
-      '%components%': path.resolve(__dirname, 'src/blocks/components'),
-    },
   },
 }

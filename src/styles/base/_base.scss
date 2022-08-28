@@ -95,8 +95,8 @@ a:not([class]) {
   @include adaptive-value('font-size', 47, 25);
   color: var(--black);
   // 47 font-size
-  margin-bottom: 27 / 47 * 1em; // 27px - отступ по макету
-  line-height: 70 / 47 * 100%; // 70px - по макету
+  margin-bottom: calc(27 / 47) * 1em; // 27px - отступ по макету
+  line-height: calc(70 / 47) * 100%; // 70px - по макету
 }
 
 h2 {
@@ -123,13 +123,13 @@ h2 {
 
 .coll-md {
   margin-bottom: 2rem;
-  @media (max-width: $md2 + px) {
+  @media (max-width: $md2) {
     @include coll();
     flex: 0 1 50%;
     max-width: 50%;
   }
 
-  @media (max-width: $md3 + px) {
+  @media (max-width: $md3) {
     @include coll();
     flex: 0 1 100%;
     max-width: 100%;
@@ -143,11 +143,11 @@ h2 {
 }
 
 .bg-img {
-  padding-top: 160px / 240px * 100%;
+  padding-top: calc(160px / 240px) * 100%;
 }
 
-.adaptivDiv {
-  width: 494 / 1240 * 100%; // 494 - ширина элемента 1240 - ширина контейнера
+.adaptiveDiv {
+  width: calc(494 / 1240) * 100%; // 494 - ширина элемента 1240 - ширина контейнера
   @include adaptive-value('padding', 70, 20);
   background-color: blueviolet;
 }
@@ -228,7 +228,7 @@ h2 {
   }
 }
 
-.colomns {
+.columns {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
   grid-gap: 1.5rem;

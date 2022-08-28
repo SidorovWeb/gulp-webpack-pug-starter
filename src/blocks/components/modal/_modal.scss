@@ -60,7 +60,7 @@
     display: flex;
     justify-content: flex-end;
     padding: 0.8rem;
-    @media (max-width: $md3 + px) {
+    @media (max-width: $md3) {
       width: calc(100% + 4rem);
       margin-left: -2rem;
     }
@@ -84,7 +84,7 @@
     z-index: 99;
     transition: all 225ms ease-out 0s;
 
-    @media (max-width: $md3 + px) {
+    @media (max-width: $md3) {
       padding: 0 2rem 4rem 2rem;
     }
   }
@@ -96,7 +96,7 @@
     margin-bottom: 0.8rem;
     display: block;
 
-    @media (max-width: $md3 + px) {
+    @media (max-width: $md3) {
       font-size: 2.5rem;
       line-height: 3.8rem;
     }
@@ -108,7 +108,7 @@
     margin: 0;
     margin-bottom: 2.4rem;
 
-    @media (max-width: $md3 + px) {
+    @media (max-width: $md3) {
       padding-right: 0;
     }
   }
@@ -127,7 +127,7 @@
     cursor: pointer;
     padding: 1rem;
 
-    @media (max-width: $md3 + px) {
+    @media (max-width: $md3) {
       width: 3rem;
       height: 3rem;
     }
@@ -204,7 +204,7 @@
   & .modal__top {
     position: relative;
 
-    @media (max-width: $md3 + px) {
+    @media (max-width: $md3) {
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       margin-bottom: 2rem;
     }

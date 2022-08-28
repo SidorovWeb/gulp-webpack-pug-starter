@@ -1,4 +1,4 @@
-import IMask from 'imask'
+import IMask from 'imask/dist/imask.js'
 
 const imask = () => {
   const elements = document.querySelectorAll('.imask')

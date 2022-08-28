@@ -1,23 +1,19 @@
-// import './import/polyfill'
-// import './import/svg4everybody'
-// import './modules/svgLoad'
-import './modules/stickyHeader'
-import './modules/replaceImage'
-import './modules/dragstart'
-import 'focus-visible'
-import '../blocks/components/video/video'
-import switcherThemes from './modules/switcherThemes'
-import Modal from '../blocks/components/modal/modal'
-import Select from '../blocks/components/select/select'
-import Collapse from '../blocks/components/collapse/collapse'
-import Accordion from '../blocks/components/accordion/accordion'
-import swiperSlider from '../blocks/components/slider/slider'
-import hamburger from '../blocks/components/hamburger/hamburger'
-import Menu from '../blocks/components/menu/menu'
-import Form from '../blocks/components/form/form'
-import Quiz from '../blocks/components/quiz/quiz'
-import imask from './modules/imask'
-import yandexMap from './modules/yandexMap'
+import './modules/stickyHeader.js'
+import './modules/replaceImage.js'
+import './modules/dragstart.js'
+import 'focus-visible/dist/focus-visible.js'
+import '../blocks/components/video/video.js'
+import switcherThemes from './modules/switcherThemes.js'
+import Modal from '../blocks/components/modal/modal.js'
+import Select from '../blocks/components/select/select.js'
+import Collapse from '../blocks/components/collapse/collapse.js'
+import Accordion from '../blocks/components/accordion/accordion.js'
+import swiperSlider from '../blocks/components/slider/slider.js'
+import Hamburger from '../blocks/components/hamburger/hamburger.js'
+import Form from '../blocks/components/form/form.js'
+import Quiz from '../blocks/components/quiz/quiz.js'
+import imask from './modules/imask.js'
+import yandexMap from './modules/yandexMap.js'
 // import touch from './modules/touch'
 // import viewportOnMobile from './modules/viewportOnMobile'
 // import smoothScroll from './modules/scroll-anchors'
@@ -120,11 +116,6 @@ window.addEventListener('DOMContentLoaded', () => {
     form.reset()
   }
 
-  new Menu({
-    elementHamburger: '.hamburger',
-    nav: '.nav',
-  })
-
   const forms = document.querySelectorAll('.form')
   forms.forEach((form) => {
     new Form({
@@ -212,9 +203,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
   swiperSlider()
 
-  hamburger()
-
   imask()
 
   yandexMap()
+
+  new Hamburger('.hamburger')
+  // При активации на body вешается класс '.hamburger_active'
+  // При закрытии на body вешается класс '.hamburger_inactive'
 })
