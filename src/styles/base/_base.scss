@@ -330,3 +330,20 @@ h2 {
     font-weight: bold;
   }
 }
+
+.isolation {
+  background: green;
+  padding: 40px;
+  isolation: isolate;
+
+  &-container {
+    background: rgb(52, 34, 144);
+    padding: 20px;
+  }
+  &-inner {
+    position: absolute;
+    z-index: -1;
+    background: rgb(234, 255, 1);
+    padding: 20px;
+  }
+}
