@@ -1,4 +1,4 @@
-import supportsWebP from 'supports-webp/dist/supports-webp.es-modules.js'
+import supportsWebP from 'supports-webp'
 import { elementWatcher } from './observer.js'
 
 let arr = document.querySelectorAll('[data-bg-replace-webp]')

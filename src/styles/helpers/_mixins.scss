@@ -57,3 +57,11 @@
     }
   }
 }
+
+@mixin not-first {
+  & > * {
+    &:not(:first-child) {
+      @content;
+    }
+  }
+}

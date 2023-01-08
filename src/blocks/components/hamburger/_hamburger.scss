@@ -13,9 +13,8 @@
   cursor: pointer;
   z-index: 999;
 
-  @media (max-width: 991.98px) {
+  @media (max-width: $md2) {
     display: flex;
-    margin-right: auto;
   }
 
   &:focus {

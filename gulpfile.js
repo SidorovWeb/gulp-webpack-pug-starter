@@ -54,15 +54,10 @@ export const paths = {
     dist: './dist/img/svg/',
     watch: './src/img/svg/*.svg',
   },
-  spritesMono: {
-    src: './src/img/sprites/sprite-mono/*.svg',
-    dist: './dist/img/sprites/',
-    watch: './src/img/sprites/sprite-mono/*.svg',
-  },
-  spritesMulti: {
-    src: './src/img/sprites/sprite-multi/*.svg',
-    dist: './dist/img/sprites/',
-    watch: './src/img/sprites/sprite-multi/*.svg',
+  svgSprite: {
+    src: './src/img/svg-sprite/*.svg',
+    dist: './dist/img/svg-sprite/',
+    watch: './src/img/svg-sprite/*.svg',
   },
   fonts: {
     src: './src/fonts/**/*.{woff,woff2}',
@@ -89,8 +84,7 @@ import './gulp-tasks/scripts.js'
 import './gulp-tasks/images.js'
 import './gulp-tasks/webp.js'
 import './gulp-tasks/svg.js'
-import './gulp-tasks/sprites-mono.js'
-import './gulp-tasks/sprites-multi.js'
+import './gulp-tasks/svg-sprite.js'
 import './gulp-tasks/fonts.js'
 import './gulp-tasks/mail.js'
 import './gulp-tasks/favicons.js'
@@ -99,37 +93,13 @@ import './gulp-tasks/clean.js'
 
 export const development = gulp.series(
   'clean',
-  gulp.parallel([
-    'styles',
-    'scripts',
-    'images',
-    'webp',
-    'fonts',
-    'views',
-    'svg',
-    'spritesMono',
-    'spritesMulti',
-    'mail',
-    'favicons',
-  ]),
+  gulp.parallel(['styles', 'scripts', 'images', 'webp', 'fonts', 'views', 'svg', 'svgSprite', 'mail', 'favicons']),
   gulp.parallel('serve')
 )
 
 export const prod = gulp.series(
   'clean',
-  gulp.series([
-    'styles',
-    'scripts',
-    'images',
-    'webp',
-    'views',
-    'svg',
-    'spritesMono',
-    'spritesMulti',
-    'fonts',
-    'mail',
-    'favicons',
-  ])
+  gulp.series(['styles', 'scripts', 'images', 'webp', 'views', 'svg', 'svgSprite', 'fonts', 'mail', 'favicons'])
 )
 
 export default development

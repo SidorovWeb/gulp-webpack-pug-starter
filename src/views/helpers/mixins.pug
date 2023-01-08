@@ -15,11 +15,7 @@ mixin image(img,width,height,alt,png)
 
 mixin icon-mono(name)
 	svg(class="icon icon-" + name)&attributes(attributes)
-		use(xlink:href="img/sprites/sprite-mono.svg#" + name)
-
-mixin icon-multi(name)
-	svg(class="icon icon-" + name)&attributes(attributes)
-		use(xlink:href="img/sprites/sprite-multi.svg#" + name)
+		use(xlink:href="img/svg-sprite/svg-sprite.svg#" + name)
 
 	//- lazyBg
 	//- data-bg=`${img}.png` data-bg-replace-webp=`${img}.webp`

@@ -3,12 +3,12 @@
 
 header.header
   .header__wrapper
-    include ../../components/hamburger/hamburger.pug
+    a.brand.header__brand(href="#") brand
     nav.nav.header__nav
       ul.nav__list
         for item in nav
           li.nav__item
             a(href="#").nav__link= item
-    a.brand.header__brand(href="#") brand
-    .header__button-wrapper
+    div.header__left-block
       a.button.header__button(href="#") button
+      include ../../components/hamburger/hamburger.pug
