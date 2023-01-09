@@ -23,14 +23,9 @@ window.addEventListener('DOMContentLoaded', () => {
   // viewportOnMobile()
 
   new Modal({
-    modal: '.modal',
-    trigger: '.modal__trigger',
-    close: '.modal__close',
-    touch: {
-      window: '.modal__window',
-      panel: '.modal__top',
-      breakpoint: 479.98, // default max-width:  479.98
-    },
+    modal: '.modal', // #modal.modal
+    trigger: '.modal-trigger', // button.modal-trigger(data-trigger='modal')
+    close: '.modal__close', // button.modal__close
   })
 
   new Collapse({
@@ -95,26 +90,13 @@ window.addEventListener('DOMContentLoaded', () => {
       },
     },
 
-    submitHandler: (form, event) => {
-      sendDataQuiz(form, event)
+    submitHandler: (form) => {
+      sendData(form).then(() => {
+        const quiz = document.querySelector('.quiz')
+        quiz.classList.add('quiz-finish')
+      })
     },
   })
-
-  function sendDataQuiz(form) {
-    const xhr = new XMLHttpRequest()
-    const fd = new FormData(form)
-    const quiz = document.querySelector('.quiz')
-
-    xhr.addEventListener('load', function () {
-      quiz.classList.add('success')
-    })
-    xhr.addEventListener('error', function () {
-      quiz.classList.add('error')
-    })
-    xhr.open('POST', 'mail/mail.php')
-    xhr.send(fd)
-    form.reset()
-  }
 
   const forms = document.querySelectorAll('.form')
   forms.forEach((form) => {
@@ -139,55 +121,32 @@ window.addEventListener('DOMContentLoaded', () => {
           required: 'Согласии на обработку персональных данных!',
         },
       },
-      submitHandler: (form, event) => {
-        sendData(form, event)
+      submitHandler: (form) => {
+        sendData(form)
       },
     })
   })
 
-  function sendData(form, event) {
-    const xhr = new XMLHttpRequest()
-    const fd = new FormData(form)
-    xhr.addEventListener('load', function () {
-      if (form.closest('#modal')) {
-        afterForm('success', event)
-      } else {
-        callModalWindow('.modal-success', event)
-      }
+  const sendData = (form) => {
+    return new Promise((resolve) => {
+      const xhr = new XMLHttpRequest()
+      const fd = new FormData(form)
+
+      xhr.addEventListener('load', function () {
+        callModalWindow('.modal-success')
+      })
+      xhr.addEventListener('error', function () {
+        callModalWindow('.modal-error')
+      })
+
+      xhr.open('POST', 'mail/mail.php')
+      xhr.send(fd)
+      form.reset()
+      resolve()
     })
-    xhr.addEventListener('error', function () {
-      if (form.closest('#modal')) {
-        afterForm('error', event)
-      } else {
-        callModalWindow('.modal-error', event)
-      }
-    })
-    xhr.open('POST', 'mail/mail.php')
-    xhr.send(fd)
-    form.reset()
   }
 
-  function afterForm(className, event) {
-    const modal = document.querySelector('#modal')
-    const modalWindow = document.querySelector('#modal .modal__window')
-    const windowHeight = modalWindow.offsetHeight
-    modalWindow.style.minHeight = `${windowHeight}px`
-    modal.classList.add(`${className}`)
-
-    setTimeout(() => {
-      if (modal.classList.contains('modal-open')) {
-        modal.classList.add('modal-close')
-        modal.classList.remove('modal-open')
-      }
-      setTimeout(() => {
-        modal.classList.remove(`${className}`)
-        modalWindow.style.minHeight = ''
-        event.submitter.focus()
-      }, 0)
-    }, 2000)
-  }
-
-  function callModalWindow(modalName, event) {
+  const callModalWindow = (modalName) => {
     const modal = new Modal({
       modal: modalName,
       close: '.modal__close',
@@ -195,10 +154,7 @@ window.addEventListener('DOMContentLoaded', () => {
     modal.open()
     setTimeout(() => {
       modal.close()
-      setTimeout(() => {
-        event.submitter.focus()
-      }, 0)
-    }, 2000)
+    }, 5000)
   }
 
   swiperSlider()

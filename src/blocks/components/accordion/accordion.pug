@@ -13,10 +13,10 @@
     .accordion__item
       if d.open
         button(type="button").block-2__title.btn.accordion__title.open=d.h
-          +icon-mono(`${d.i}`)(class="accordion__icon")
+          +icon(`${d.i}`)(class="accordion__icon")
       else
         button(type="button").block-2__title.btn.accordion__title=d.h
-          +icon-mono(`${d.i}`)(class="accordion__icon")
+          +icon(`${d.i}`)(class="accordion__icon")
       .block-2__collapse.accordion__content
         p.accordion__text=d.t
 

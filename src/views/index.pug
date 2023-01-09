@@ -25,10 +25,10 @@ block content
 				button.btn.btn--default.btn--large.btn--radius(type="button") Large
 				a(href="#").btn.btn--default.btn--radius Link
 				button.btn.btn--default.btn--normal.btn--with-icon.btn--radius(type="button")
-					+icon-mono('vk')(class="btn--icon-svg social-icon")
+					+icon('vk')(class="btn--icon-svg social-icon")
 					span VKontakte
 				button.btn.btn--default.btn--normal.btn--icon.btn--radius(type="button")
-					+icon-mono('vk')(class="btn--icon-svg social-icon")
+					+icon('vk')(class="btn--icon-svg social-icon")
 					span.sr-only VKontakte
 				button.btn.btn--default.btn--normal.btn--two-lines.btn--radius(type="button")
 					span Subscribe to our newsletter
@@ -39,9 +39,9 @@ block content
 				button.btn.btn--normal.btn--danger.btn--radius(type="button") Normal
 				button.btn.btn--normal.btn--radius(type="button" disabled) Button
 			h2 Modal
-			button.btn.btn--default.btn--normal.btn--radius.modal__trigger(type="button" data-trigger='modal') modal
-			button.btn.btn--default.btn--normal.btn--radius.modal__trigger(type="button" data-trigger='success') modal success
-			button.btn.btn--default.btn--normal.btn--radius.modal__trigger(type="button" data-trigger='error') modal error
+			button.btn.btn--default.btn--normal.btn--radius.modal-trigger(type="button" data-trigger='modal') modal
+			button.btn.btn--default.btn--normal.btn--radius.modal-trigger(type="button" data-trigger='success') modal success
+			button.btn.btn--default.btn--normal.btn--radius.modal-trigger(type="button" data-trigger='error') modal error
 			h2 Form
 			include ../blocks/components/form/form.pug
 			h2 Select
@@ -54,14 +54,14 @@ block content
 			.block-1.accordion
 				.accordion__item
 					.block-1__title.accordion__title Heading 1
-						+icon-mono('arrow')(class="accordion__icon")
+						+icon('arrow')(class="accordion__icon")
 					ul.block-1__list
 						li.block-1__item text
 						li.block-1__item text
 						li.block-1__item text
 				.accordion__item
 					.block-1__title.accordion__title Heading 2
-						+icon-mono('arrow')(class="accordion__icon")
+						+icon('arrow')(class="accordion__icon")
 					ul.block-1__list
 						li.block-1__item text
 						li.block-1__item text
@@ -69,8 +69,13 @@ block content
 			h2 Checkbox
 			include ../blocks/components/checkbox/checkbox.pug
 			h2 Image
-			div
-				+image('img/3','300','187','Горы')
+			.grid3
+				div
+					+image('img/3','300','187','Горы')
+				div
+					+image('img/3','300','187','Горы')
+				div
+					+image('img/3','300','187','Горы')
 			h2 Image background
 			.qqq(style="width: 24rem;")
 				.bg-img(data-bg=`img/5.jpg` data-bg-replace-webp=`img/5.webp`)
@@ -82,18 +87,18 @@ block content
 			.columns
 				each _, idx in Array(4)
 					.columns__item= idx + 1
-			h2 Card
+			h2 Card + image picture
 			.card
 				.card__img
-					+image('img/3','270','168.5','Горы')
+					+picture('img/3','270','168.5','Горы')
 				.card__content
 					h3
 						a(class="card__link" href="#") Title
 						p Subtitle
 				span.card__tag My tag
-			h2 Card
+			h2 Card + image picture
 			.card-2
-				+image('img/3','270','168.5','горы')
+				+picture('img/3','270','168.5','горы')
 				.card-2__content
 					h3 Title
 					p Description
@@ -119,10 +124,10 @@ block content
 			.ddd(style="width: 50%;")
 				include ../blocks/components/video/video.pug
 			h2 SVG icon
-			+icon-mono('telegram')
-			+icon-mono('vk')
-			+icon-mono('facebook')
-			+icon-mono('instagram')
+			+icon('telegram')
+			+icon('vk')
+			+icon('facebook')
+			+icon('instagram')
 			h2 Адаптивный блок
 			.adaptiveDiv
 			h2 Lazy load Maps

@@ -136,15 +136,15 @@ export default class Form {
 
   setErrorFor(input, message) {
     const formControl = input.parentElement
-    const erroeElement = formControl.querySelector(`.${this.errorTextForCreatedEl}`)
+    const errorElement = formControl.querySelector(`.${this.errorTextForCreatedEl}`)
 
     if (this.isValidClass) {
       formControl.classList.remove(this.validClass)
     }
     formControl.classList.add(this.errorClass)
 
-    if (erroeElement) {
-      erroeElement.remove()
+    if (errorElement) {
+      errorElement.remove()
     }
 
     formControl.append(this.createElementError(message))
@@ -161,17 +161,17 @@ export default class Form {
 
   setSuccessFor(input) {
     const formControl = input.parentElement
-    const erroeElement = formControl.querySelector(`.${this.errorTextForCreatedEl}`)
+    const errorElement = formControl.querySelector(`.${this.errorTextForCreatedEl}`)
 
-    if (erroeElement) {
-      erroeElement.classList.add('hide-error-text')
+    if (errorElement) {
+      errorElement.classList.add('hide-error-text')
 
       setTimeout(() => {
         formControl.classList.remove(this.errorClass)
         if (this.isValidClass) {
           formControl.classList.add(this.validClass)
         }
-        erroeElement.remove()
+        errorElement.remove()
       }, 195)
     }
 

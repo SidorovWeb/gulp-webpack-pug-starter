@@ -12,10 +12,10 @@ export function closestItemByClass(item, className) {
   return null
 }
 
-export function isScrollLock() {
+export function isScrollLock(isActive) {
   const html = document.documentElement
 
-  if (!html.classList.contains('scroll-lock')) {
+  if (isActive) {
     html.style.top = -window.pageYOffset + 'px'
     html.setAttribute('data-yoffset', window.pageYOffset)
     html.classList.add('scroll-lock')

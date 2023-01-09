@@ -1,7 +1,8 @@
-import { closestItemByClass, isScrollLock } from '../../../js/modules/utils.js'
+import { closestItemByClass } from '../../../js/modules/utils.js'
 
 export default class Hamburger {
   constructor($el) {
+    this.html = document.documentElement
     this.$el = document.querySelector($el)
 
     this.init()
@@ -28,14 +29,22 @@ export default class Hamburger {
   addClassActive = () => {
     this.$el.classList.add('active')
     document.body.classList.add('hamburger_active')
-    isScrollLock()
+    const yOffset = this.html.getAttribute('data-yoffset')
+    this.html.removeAttribute('data-yoffset')
+    this.html.classList.remove('scroll-lock')
+    window.scrollTo(0, yOffset)
+    this.html.style.top = ''
   }
 
   removeClassActive = () => {
     this.$el.classList.remove('active')
     document.body.classList.remove('hamburger_active')
     document.body.classList.add('hamburger_inactive')
-    isScrollLock()
+    const yOffset = this.html.getAttribute('data-yoffset')
+    this.html.removeAttribute('data-yoffset')
+    this.html.classList.remove('scroll-lock')
+    window.scrollTo(0, yOffset)
+    this.html.style.top = ''
 
     setTimeout(() => {
       document.body.classList.remove('hamburger_inactive')

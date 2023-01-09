@@ -6,14 +6,19 @@ export default class Modal {
     this.closeBtns = document.querySelectorAll(options.close)
     this.modal = document.querySelector(options.modal)
     this.modalClassName = options.modal
-    this.touch = options.touch
 
     this.init()
   }
 
   init() {
     if (!this.modal) {
-      throw new Error('Обязательные опции: modal, trigger, close ')
+      throw new Error('Обязательные опции: modal')
+    }
+    if (!this.triggers) {
+      throw new Error('Обязательные опции: trigger')
+    }
+    if (!this.closeBtns) {
+      throw new Error('Обязательные опции: close')
     }
 
     this.setup()
@@ -26,39 +31,6 @@ export default class Modal {
     this.firstTrigger = null
     this.currentModal = null
     this.focusElements = focusElements()
-    this.handlers = {
-      touchstart: this.touchstart.bind(this),
-      touchmove: this.touchmove.bind(this),
-      touchend: this.touchend.bind(this),
-      keydown: this.keydown.bind(this),
-    }
-
-    if (this.touch) {
-      if (!this.touch.panel) {
-        throw new Error('Обязательная опция: touch: {panel: `..`}')
-      }
-      if (!this.touch.window) {
-        throw new Error('Обязательная опция: touch: {window: `..`}')
-      }
-
-      this.breakpoint = this.touch.breakpoint ?? 479.98
-      this.panel = document.querySelector(this.touch.panel)
-      this.window = document.querySelector(this.touch.window)
-      this.windowInnerWidth = window.innerWidth
-      this.windowHeight = this.modal.offsetHeight
-      this.windowStartPosY = null
-      this.windowEndPosY = null
-      this.panelPosY = null
-      this.posY = null
-      this.startTime = null
-      this.endTime = null
-      this.closeValue = 1.6
-      this.transition = `all 225ms ease-out 0s`
-
-      if (this.breakpoint && this.windowInnerWidth <= this.breakpoint) {
-        this.modal.classList.add('touch')
-      }
-    }
   }
 
   listeners() {
@@ -79,30 +51,9 @@ export default class Modal {
         }
       })
     })
-
-    window.addEventListener('resize', () => {
-      if (this.breakpoint) {
-        const windowInnerWidth = window.innerWidth
-
-        if (windowInnerWidth <= this.breakpoint) {
-          this.modal.classList.add('touch')
-          this.panel.addEventListener('touchstart', this.handlers.touchstart, { passive: true })
-        } else {
-          if (this.modal.classList.contains('touch')) {
-            this.modal.classList.remove('touch')
-            this.panel.removeEventListener('touchstart', this.handlers.touchstart, { passive: true })
-            this.panel.removeEventListener('touchmove', this.handlers.touchmove, { passive: true })
-            this.panel.removeEventListener('touchend', this.handlers.touchend, { passive: true })
-            this.panel.removeEventListener('touchcancel', this.handlers.touchend, { passive: true })
-          }
-        }
-      }
-    })
   }
 
   open(trigger) {
-    window.addEventListener('keydown', this.handlers.keydown)
-
     if (this.modal.classList.contains('error')) {
       this.modal.classList.remove('error')
     }
@@ -116,10 +67,6 @@ export default class Modal {
 
     if (this.isOpened && !this.nextWindows) {
       this.firstTrigger = trigger
-    }
-
-    if (this.touch && this.breakpoint && this.windowInnerWidth <= this.breakpoint) {
-      this.panel.addEventListener('touchstart', this.handlers.touchstart, { passive: true })
     }
 
     if (document.documentElement.classList.contains('scroll-lock')) {
@@ -141,7 +88,7 @@ export default class Modal {
     this.currentModal.classList.add('modal-open')
 
     if (!this.nextWindows) {
-      isScrollLock()
+      isScrollLock(true)
       this.nextWindows = true
     }
 
@@ -155,16 +102,6 @@ export default class Modal {
 
     this.nextWindows = false
 
-    if (this.touch && this.breakpoint && this.windowInnerWidth <= this.breakpoint) {
-      this.window.style.transform = ``
-      this.window.style.transition = ``
-
-      this.panel.removeEventListener('touchstart', this.handlers.touchstart, { passive: true })
-      this.panel.removeEventListener('touchmove', this.handlers.touchmove, { passive: true })
-      this.panel.removeEventListener('touchend', this.handlers.touchend, { passive: true })
-      this.panel.removeEventListener('touchcancel', this.handlers.touchend, { passive: true })
-    }
-
     document.querySelectorAll(this.modalClassName).forEach((modal) => {
       modal.classList.add('modal-close')
       modal.classList.remove('modal-open')
@@ -173,10 +110,15 @@ export default class Modal {
     this.isOpened = false
 
     bodyScrollControl()
-    isScrollLock()
+    isScrollLock(false)
     this.focusControl()
 
-    window.removeEventListener('keydown', this.handlers.keydown)
+    const forms = this.modal.querySelectorAll('form')
+    if (forms) {
+      forms.forEach((f) => {
+        f.reset()
+      })
+    }
   }
 
   keydown(e) {
@@ -188,53 +130,6 @@ export default class Modal {
     if (e.key === 'Tab' && this.isOpened) {
       this.focusCatcher(e)
     }
-  }
-
-  touchstart(e) {
-    this.panelPosY = e.touches[0].clientY
-    this.windowStartPosY = this.window.getBoundingClientRect().top
-    this.startTime = Math.round(e.timeStamp)
-
-    this.panel.addEventListener('touchmove', this.handlers.touchmove, { passive: true })
-    this.panel.addEventListener('touchend', this.handlers.touchend, { passive: true })
-    this.panel.addEventListener('touchcancel', this.handlers.touchend, { passive: true })
-  }
-
-  touchmove(e) {
-    this.posY = e.touches[0].clientY
-
-    if (this.posY - this.panelPosY < 0) {
-      return
-    }
-
-    this.window.style.transition = `initial`
-    this.window.style.transform = `translate3d(0px,${this.posY - this.panelPosY}px,1px)`
-  }
-
-  touchend(e) {
-    this.endTime = Math.round(e.timeStamp)
-
-    const speed = Math.round(this.startTime) - Math.round(this.endTime)
-    this.windowEndPosY = this.window.getBoundingClientRect().top
-
-    if (Math.abs(speed) < 100 && this.windowEndPosY > this.windowStartPosY) {
-      this.endOptions()
-      return
-    }
-
-    if (this.posY >= this.windowStartPosY * this.closeValue) {
-      this.endOptions()
-      return
-    }
-
-    this.window.style.transform = `translate3d(0px,0px,1px)`
-    this.window.style.transition = this.transition
-  }
-
-  endOptions() {
-    this.window.style.transform = `translate3d(0px,${this.windowHeight}px,1px)`
-    this.window.style.transition = this.transition
-    this.close()
   }
 
   focusControl() {

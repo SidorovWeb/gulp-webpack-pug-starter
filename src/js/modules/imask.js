@@ -1,4 +1,4 @@
-import IMask from 'imask/dist/imask.js'
+import IMask from 'imask'
 
 const imask = () => {
   const elements = document.querySelectorAll('.imask')
@@ -11,17 +11,17 @@ const imask = () => {
     placeholderChar: '_',
   }
 
-  for (let i = 0; i < elements.length; i++) {
-    elements[i].addEventListener('focus', function () {
-      mask = IMask(this, maskOptions)
+  elements.forEach((element) => {
+    element.addEventListener('focus', function () {
+      mask = IMask(element, maskOptions)
     })
 
-    elements[i].addEventListener('blur', function () {
-      if (this.value.match('_')) {
+    element.addEventListener('blur', function (e) {
+      if (e.target.value.match('_')) {
         mask.masked.reset()
       }
     })
-  }
+  })
 }
 
 export default imask

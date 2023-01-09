@@ -2,8 +2,8 @@ export default () => {
   const el = document.querySelector('.touch')
   const elHeader = document.querySelector('.touch__header')
   const elStartPosY = el.getBoundingClientRect().top
-  const elHeigth = el.offsetHeight
-  const slopValue = elHeigth * (1 / 2.5)
+  const elHeight = el.offsetHeight
+  const slopValue = elHeight * (1 / 2.5)
   const transition = `all 300ms ease-out 0s`
   let elHeaderPosY = null
   let posY = null
@@ -66,7 +66,7 @@ export default () => {
 
   const endOptions = () => {
     el.style.top = `${elStartPosY}px`
-    el.style.transform = `translate3d(0px,${elHeigth + 10}px,1px)`
+    el.style.transform = `translate3d(0px,${elHeight + 10}px,1px)`
     el.style.transition = transition
     el.classList.add('touchend')
   }
